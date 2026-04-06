@@ -4,114 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Neelu Kanwaria | Portfolio</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',sans-serif;background:#f5f5f5;color:#333}
-
 .container{display:flex;min-height:100vh}
-
-/* SIDEBAR */
-.sidebar{
-  width:280px;
-  background:#fff;
-  padding:30px 20px;
-  border-right:1px solid #e5e5e5;
-}
-
+.sidebar{width:280px;background:#fff;padding:30px 20px;border-right:1px solid #e5e5e5}
 .profile{text-align:center}
-.profile img{
-  width:120px;height:120px;border-radius:20px;object-fit:cover;margin-bottom:15px
-}
+.profile img{width:120px;height:120px;border-radius:20px;object-fit:cover;margin-bottom:15px}
 .profile h2{font-size:1.2rem;margin-bottom:5px}
 .profile p{font-size:0.85rem;color:#777;margin-bottom:15px}
-
 .menu{margin-top:20px}
-.menu a{
-  display:block;
-  padding:10px;
-  text-decoration:none;
-  color:#555;
-  border-left:3px solid transparent;
-  margin-bottom:8px;
-}
-.menu a.active,.menu a:hover{
-  border-color:#3498db;
-  color:#000;
-}
-
-/* MAIN */
+.menu a{display:block;padding:10px;text-decoration:none;color:#555;border-left:3px solid transparent;margin-bottom:8px;cursor:pointer}
+.menu a.active,.menu a:hover{border-color:#3498db;color:#000}
 .main{flex:1;padding:20px 30px}
-
-.topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:20px;
-}
-
-.filters button{
-  border:1px solid #ddd;
-  background:#fff;
-  padding:6px 14px;
-  margin-right:10px;
-  border-radius:20px;
-  cursor:pointer;
-}
-.filters button.active{
-  background:#3498db;color:#fff;border:none
-}
-
-.search input{
-  padding:6px 10px;
-  border:1px solid #ddd;
-  border-radius:20px;
-}
-
-/* GALLERY */
-.gallery{
-  column-count:3;
-  column-gap:15px;
-}
-
-.card{
-  background:#fff;
-  margin-bottom:15px;
-  border-radius:10px;
-  overflow:hidden;
-  display:inline-block;
-  width:100%;
-}
-
-.card img{
-  width:100%;
-  display:block;
-}
-
-.card-content{
-  padding:10px;
-}
-
+.section{display:none}
+.section.active{display:block}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.filters button{border:1px solid #ddd;background:#fff;padding:6px 14px;margin-right:10px;border-radius:20px;cursor:pointer}
+.filters button.active{background:#3498db;color:#fff;border:none}
+.search input{padding:6px 10px;border:1px solid #ddd;border-radius:20px}
+.gallery{column-count:3;column-gap:15px}
+.card{background:#fff;margin-bottom:15px;border-radius:10px;overflow:hidden;display:inline-block;width:100%}
+.card img{width:100%;display:block}
+.card-content{padding:10px}
 .price{color:#3498db;font-weight:600}
-
-@media(max-width:1000px){
-  .gallery{column-count:2}
-}
-@media(max-width:600px){
-  .container{flex-direction:column}
-  .sidebar{width:100%;border-right:none;border-bottom:1px solid #ddd}
-  .gallery{column-count:1}
-}
+.about p{margin-bottom:15px;line-height:1.7;color:#555}
+.about h3{margin-top:25px;margin-bottom:10px}
+.list{margin-top:10px}
+.list li{margin-bottom:6px;font-size:0.9rem;color:#444}
+@media(max-width:1000px){.gallery{column-count:2}}
+@media(max-width:600px){.container{flex-direction:column}.sidebar{width:100%;border-right:none;border-bottom:1px solid #ddd}.gallery{column-count:1}}
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-<!-- SIDEBAR -->
 <div class="sidebar">
   <div class="profile">
     <img src="https://via.placeholder.com/120" alt="artist">
@@ -120,52 +50,113 @@ body{font-family:'Inter',sans-serif;background:#f5f5f5;color:#333}
   </div>
 
   <div class="menu">
-    <a href="#" class="active">Portfolio</a>
-    <a href="#">About</a>
-    <a href="#">News</a>
-    <a href="#">Collections</a>
+    <a onclick="showSection('portfolio')" class="active">Portfolio</a>
+    <a onclick="showSection('about')">About</a>
   </div>
 </div>
 
-<!-- MAIN -->
 <div class="main">
 
+<div id="portfolio" class="section active">
   <div class="topbar">
     <div class="filters">
       <button class="active">All</button>
       <button>Available</button>
       <button>Sold</button>
     </div>
-
     <div class="search">
       <input type="text" placeholder="Search">
     </div>
   </div>
-
   <div class="gallery" id="gallery"></div>
-
 </div>
 
+<div id="about" class="section">
+  <div class="about">
+
+    <p>Neelu Kanwaria is an artist who translates the unspoken emotions of the human experience into powerful visual narratives. For her, words often fall short in expressing the depth of thought, so she turns to art as her true language. Deeply moved by human emotions — particularly pain and struggle — she places them at the heart of her work. Her paintings echo the untold stories of suffering, giving voice to those often overlooked.</p>
+
+    <p>Faces of common people frequently appear in her artworks, brought to life through her distinctive use of the pour painting technique. This fluid and spontaneous approach allows her to capture the essence of a moment in a single sitting, preserving the raw energy of her thoughts as they emerge. She believes that unless a painting carries life within it, it cannot truly convey a message — which is why expressions and emotions remain central to her practice.</p>
+
+    <p>Working with diverse mediums such as charcoal, soft pastels, and acrylics, Neelu has been practicing art for over 30 years. A graduate of the Rajasthan School of Art, she has showcased her work in numerous exhibitions across India and internationally, touching audiences with her evocative portrayals of human emotion.</p>
+
+    <h3>Qualifications</h3>
+    <ul class="list">
+      <li>4 Years Diploma (Painting) From Rajasthan School of Art (1999)</li>
+      <li>M.A. (Political Science, Economics, Drawing and Painting)</li>
+      <li>B.Ed</li>
+    </ul>
+
+    <h3>Awards & Achievements</h3>
+    <ul class="list">
+      <li>1996: Youth Festivals University of Rajasthan</li>
+      <li>1996: All India Women Integration Camp (Bhatinda Punjab)</li>
+      <li>1998: Painting Competition Organised by Maharani College</li>
+      <li>1999: Student Award – Rajasthan Lalit Kala Academy</li>
+      <li>1999: Annual Art Exhibition by Rajasthan School of Art</li>
+      <li>2000: Jaipur Festival (Nagar Nigam) Jaipur</li>
+      <li>2000: Poster Painting Competition by Rajasthan University Women Association</li>
+      <li>2011: Awarded by Kalaneri Fine Art Academy</li>
+      <li>2012: Best Display at Kala Mela by Rajasthan Lalit Kala Academy</li>
+      <li>2013: 16th Kala Mela by Rajasthan Lalit Kala Academy</li>
+      <li>2013: Awarded by Spandan National Exhibition at Jawahar Kala Kendra</li>
+      <li>2016: Women’s Excellence Achievement Award</li>
+      <li>2016: City Icon Award</li>
+      <li>2016: Awarded by Abhinav Rajasthan</li>
+      <li>2016: Rajasthan Women Achievements Award</li>
+      <li>2016: Awarded By Social Group at Dandiya Garba Raas Event</li>
+      <li>2017: Awarded Nari Tujhe Salaam</li>
+      <li>2017: Women of Future Award</li>
+      <li>2017: Rashtriya Kala Ratn Award Tonk</li>
+      <li>2017: Felicitation by multiple art foundations</li>
+      <li>2018: Ideal Women Achievement Award</li>
+      <li>2018: Jaipur Pride Award</li>
+      <li>2018: National Cultural Award</li>
+      <li>2018: Most Successful Entrepreneur Award</li>
+    </ul>
+
+    <h3>Exhibitions</h3>
+    <ul class="list">
+      <li>2018: International Group Exhibition at Jakarta (Indonesia)</li>
+      <li>2018: Solo Exhibition at Jawahar Kala Kendra</li>
+      <li>2018: Jaipur Kala Mahotsav Exhibition</li>
+      <li>2018: Group Exhibitions across Rajasthan Lalit Kala Academy</li>
+      <li>2017: All India Group Shows (Hyderabad, Nepal, Delhi)</li>
+      <li>2016: Jaipur Art Summit</li>
+      <li>Annual Art Exhibitions (1996–1999)</li>
+      <li>Multiple Kala Mela exhibitions</li>
+    </ul>
+
+    <h3>Workshops & Social Work</h3>
+    <ul class="list">
+      <li>Workshops for Disabled Students</li>
+      <li>Art Camps by Rajasthan Lalit Kala Academy</li>
+      <li>Art Camps by Kalaneri & Srishti Kutumb</li>
+      <li>Workshops for underprivileged children</li>
+    </ul>
+
+  </div>
+</div>
+
+</div>
 </div>
 
 <script>
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
+  document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active'))
+  document.getElementById(id).classList.add('active')
+  event.target.classList.add('active')
+}
+
 fetch('data.json')
 .then(res=>res.json())
 .then(data=>{
   const gallery=document.getElementById('gallery')
-
   data.forEach(item=>{
     const card=document.createElement('div')
     card.className='card'
-
-    card.innerHTML=`
-      <img src="${item.image}" />
-      <div class="card-content">
-        <h4>${item.title}</h4>
-        <p class="price">₹${item.price}</p>
-      </div>
-    `
-
+    card.innerHTML=`<img src="${item.image}"/><div class="card-content"><h4>${item.title}</h4><p class="price">₹${item.price}</p></div>`
     gallery.appendChild(card)
   })
 })
