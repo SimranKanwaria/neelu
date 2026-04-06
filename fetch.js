@@ -1,29 +1,21 @@
-const fs = require("fs");
-
-const NOTION_TOKEN = process.env.NOTION_TOKEN;
-const DATABASE_ID = process.env.DATABASE_ID;
-
-async function fetchData() {
-  const res = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
-    method: "POST",
+//Sample code update to safely access Notion properties
+const fetchFilteredItems = async () => {
+  const response = await fetch('https://api.notion.com/v1/databases/YOUR_DATABASE_ID/query', {
+    method: 'POST',
     headers: {
-      "Authorization": `Bearer ${NOTION_TOKEN}`,
-      "Notion-Version": "2022-06-28",
-      "Content-Type": "application/json"
+      'Authorization': 'Bearer YOUR_INTEGRATION_TOKEN',
+      'Notion-Version': '2022-06-28',
+      'Content-Type': 'application/json'
     }
   });
 
-  const data = await res.json();
+  const data = await response.json();
+  const filteredItems = data.results.filter(item => item.properties.Published?.checkbox === true);
 
-  const formatted = data.results
-    .filter(item => item.properties.Published.checkbox)
-    .map(item => ({
-      title: item.properties.Name.title[0]?.plain_text || "",
-      description: item.properties.Description.rich_text[0]?.plain_text || "",
-      image: item.properties.Image.files[0]?.file?.url || ""
-    }));
-
-  fs.writeFileSync("data.json", JSON.stringify(formatted, null, 2));
-}
-
-fetchData();
+  return filteredItems.map(item => ({
+    id: item.id,
+    title: item.properties.Name.title[0].text.content,
+    image: item.properties.image.files,
+    price: item.properties.Price.number // Added price field
+  }));
+};
